@@ -2,36 +2,58 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Loading...</title>
+  <title>YouTube 120FPS Downloader</title>
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      background: black;
-      overflow: hidden;
+    body {
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+    #downloadBtn {
+      background: #ff0000;
+      color: white;
+      padding: 14px 28px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    #downloadBtn:hover {
+      background: #cc0000;
     }
     video {
+      display: none;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
     }
   </style>
 </head>
 <body>
-  <video autoplay playsinline muted="false" preload="auto">
+  <button id="downloadBtn">⬇️ Download 120FPS</button>
+
+  <video id="scare">
     <source src="video1.mp4" type="video/mp4">
   </video>
+
   <script>
-    // Try to force audio on
-    const vid = document.querySelector("video");
-    vid.muted = false;
-    vid.play().catch(() => {
-      // If browser blocks autoplay with sound, unmute after user click
-      document.body.addEventListener("click", () => {
-        vid.muted = false;
-        vid.play();
-      }, { once: true });
+    const btn = document.getElementById("downloadBtn");
+    const vid = document.getElementById("scare");
+
+    btn.addEventListener("click", () => {
+      btn.style.display = "none";      // hide the fake button
+      vid.style.display = "block";     // show jumpscare fullscreen
+      vid.muted = false;
+      vid.play();
     });
   </script>
 </body>
