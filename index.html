@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Loading...</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: black;
+      overflow: hidden;
+    }
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <video autoplay playsinline muted="false" preload="auto">
+    <source src="video1.mp4" type="video/mp4">
+  </video>
+  <script>
+    // Try to force audio on
+    const vid = document.querySelector("video");
+    vid.muted = false;
+    vid.play().catch(() => {
+      // If browser blocks autoplay with sound, unmute after user click
+      document.body.addEventListener("click", () => {
+        vid.muted = false;
+        vid.play();
+      }, { once: true });
+    });
+  </script>
+</body>
+</html>
